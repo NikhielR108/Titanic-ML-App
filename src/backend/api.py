@@ -18,9 +18,7 @@ class InputData(BaseModel):
     Sex: str
     Pclass: int
     SibSp: int
-    Embarked_S: int
-    Embarked_C: int
-    Embarked_Q: int
+    Embarked: str
     Parch: int
     Age: float
     Fare: float
