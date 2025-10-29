@@ -4,6 +4,7 @@ import pandas as pd
 import joblib  # or pickle, depending on how model was saved
 from pycaret.classification import load_model, predict_model  # or regression
 from pathlib import Path
+import numpy as np
 
 # Initialize FastAPI app
 app = FastAPI(title="PyCaret Model API", version="1.0")
@@ -28,6 +29,9 @@ class InputData(BaseModel):
 def home():
     return {"message": "PyCaret Model API is running!"}
 
+
+from fastapi.encoders import jsonable_encoder
+
 @app.post("/predict")
 def predict(data: InputData):
     # Convert input to DataFrame
@@ -36,13 +40,26 @@ def predict(data: InputData):
     # Make prediction
     predictions = predict_model(model, data=input_df)
 
-    # Extract prediction
-    prediction = predictions["prediction_label"][0]
-    prediction_score = predictions.get("prediction_score", [None])[0]
+    # Extract results
+    prediction = predictions.loc[0, "prediction_label"]
+    prediction_score = (
+        predictions.loc[0, "prediction_score"]
+        if "prediction_score" in predictions.columns
+        else None
+    )
 
-    return {
+    # ✅ Convert numpy types → Python
+    if isinstance(prediction, (np.generic,)):  # catches np.int64, np.float64, etc.
+        prediction = prediction.item()
+    if isinstance(prediction_score, (np.generic,)):
+        prediction_score = prediction_score.item()
+
+    # ✅ Build plain-Python response
+    response = {
         "input_data": data.dict(),
         "prediction": prediction,
         "prediction_score": prediction_score,
     }
 
+    # ✅ Use FastAPI's safe encoder
+    return jsonable_encoder(response)
