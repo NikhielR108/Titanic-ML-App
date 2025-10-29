@@ -1,4 +1,10 @@
 .venv
 *.log
 *.DS_Store
+
+
+# Ignore Python bytecode cache
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
