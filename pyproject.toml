@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "fastapi>=0.120.1",
     "pycaret>=3.3.2",
     "seaborn>=0.13.2",
+    "uvicorn>=0.38.0",
 ]
