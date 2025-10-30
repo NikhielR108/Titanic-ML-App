@@ -1,8 +1,9 @@
 import streamlit as st
 import requests
+from pathlib import Path
 
 st.title('Titanic survival prediction')
-
+st.image(str(Path('../../images/titanic_ship.png')), use_container_width=True)
 
 with st.form('form_key'):
     gender = st.selectbox('Please select gender',
