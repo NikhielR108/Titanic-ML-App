@@ -19,6 +19,7 @@ uv venv .venv --python 3.11
 ```
 
 Activate the virtual environment.
+
 For mac:
 ```shell
 source .venv/bin/activate
