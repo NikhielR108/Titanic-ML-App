@@ -18,6 +18,16 @@ Next create a virtual environment using:
 uv venv .venv --python 3.11
 ```
 
+Activate the virtual environment.
+For mac:
+```shell
+source .venv/bin/activate
+```
+For windows:
+```shell
+.venv\Scripts\activate
+```
+
 Install packages and dependencies using:
 ```shell
 uv sync
