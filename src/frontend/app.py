@@ -1,8 +1,9 @@
 import streamlit as st
 import requests
 from pathlib import Path
+import time
 
-st.title('Titanic survival prediction')
+st.title('Titanic Survival Prediction')
 st.image(str(Path('../../images/titanic_ship.png')), use_container_width=True)
 
 with st.form('form_key'):
@@ -66,7 +67,12 @@ if submit:
     survival = response_json['prediction']
     survival_prob = response_json['prediction_score']
 
-    st.write('### Result')
+
+    with st.spinner(text="In progress"):
+        time.sleep(3)
+        st.success("Done")
+
+    st.write('### Result:')
     st.write(f'Prediction: {survival} with probability {survival_prob}')
 
     
