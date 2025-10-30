@@ -1,4 +1,5 @@
 import streamlit as st
+import requests
 
 st.title('Titanic survival prediction')
 
@@ -44,3 +45,27 @@ with st.form('form_key'):
     
 
     submit = st.form_submit_button('Submit')
+
+
+payload_data = {
+    "Sex": gender,
+    "Pclass": pclass_val,
+    "SibSp": sibsp_val,
+    "Embarked": embarked_val,
+    "Parch": parch_val,
+    "Age": age_val,
+    "Fare": fare_val
+}
+
+endpoint = "http://127.0.0.1:8000/predict"
+if submit:
+    response = requests.post(url = endpoint, json = payload_data)
+    response_json = response.json()
+
+    survival = response_json['prediction']
+    survival_prob = response_json['prediction_score']
+
+    st.write('### Result')
+    st.write(f'Prediction: {survival} with probability {survival_prob}')
+
+    
