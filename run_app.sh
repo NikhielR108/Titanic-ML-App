@@ -4,15 +4,16 @@
 # activate virtual environment
 source .venv/bin/activate
 
-echo "Starting backend"
-echo "-----------------"
+# Ensure all child processes are killed when this script exits
+trap "kill 0" EXIT
+
 
 cd src/backend
-uvicorn api:app --reload &
-sleep 3
+bash ./run_backend.sh &
+sleep 3 
 
-echo "Starting frontend"
-echo "-----------------"
+
+# start the frontend 
 
 cd ../frontend
-streamlit run app.py
+bash ./run_frontend.sh
