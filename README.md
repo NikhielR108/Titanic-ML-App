@@ -34,3 +34,16 @@ Install packages and dependencies using:
 uv sync
 ```
 
+## Running the application
+Bash and powershell scripts have been created to allow for easy execution of the app (backend + frontend).
+
+For mac/linux users:
+
+```shell
+bash run_app.sh
+```
+
+For windows users, run the following:
+```shell
+.\run_app.psl
+```
