@@ -72,7 +72,9 @@ if submit:
         time.sleep(3)
         st.success("Done")
 
+    bool_survive = 'Survive' if survival == 1 else 'Not survive'
     st.write('### Result:')
-    st.write(f'Prediction: {survival} with probability {survival_prob}')
+    st.write(f'#### Passenger will {bool_survive} with probability {survival_prob}')
+    
 
     
