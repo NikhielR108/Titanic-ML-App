@@ -1,0 +1,25 @@
+# Main PowerShell script
+
+# Activate virtual environment
+& "$PSScriptRoot\.venv\Scripts\Activate.ps1"
+
+# Navigate to backend folder
+Set-Location "$PSScriptRoot\src\backend"
+
+# Start backend script in the background
+$backendProcess = Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -File `"$PSScriptRoot\src\backend\run_backend.ps1`"" -PassThru
+
+Write-Host "Backend started with PID $($backendProcess.Id)"
+
+# Navigate to frontend folder
+Set-Location "$PSScriptRoot\src\frontend"
+
+# Run frontend script (blocking call)
+& "$PSScriptRoot\src\frontend\run_frontend.ps1"
+
+# When frontend exits, kill backend automatically
+if (!$backendProcess.HasExited) {
+    Write-Host "Frontend exited. Stopping backend (PID $($backendProcess.Id))..."
+    $backendProcess.Kill()
+    Write-Host "Backend stopped."
+}

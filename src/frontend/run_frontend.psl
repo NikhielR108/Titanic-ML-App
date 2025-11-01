@@ -1,0 +1,7 @@
+# This script starts the frontend
+
+Write-Host "Starting the frontend"
+Write-Host "---------------------"
+
+# Run Streamlit app
+streamlit run app.py

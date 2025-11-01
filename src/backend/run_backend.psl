@@ -1,0 +1,8 @@
+# This script starts the backend
+
+Write-Host "Starting backend"
+Write-Host "--------------------"
+
+# Run Uvicorn server
+uvicorn api:app --reload
+
