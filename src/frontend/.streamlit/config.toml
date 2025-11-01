@@ -1,0 +1,6 @@
+[theme]
+base="dark"
+primaryColor="#3498db"          # Blue for buttons/inputs
+backgroundColor="#0e0f10ff"
+secondaryBackgroundColor="#052f59ff"
+textColor="#dadae0ff"
