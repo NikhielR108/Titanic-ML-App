@@ -47,3 +47,7 @@ For windows users, run the following:
 ```shell
 .\run_app.psl
 ```
+
+## App preview
+Once the app is launched, the following should be visible
+![logo](images/App_image.png)
