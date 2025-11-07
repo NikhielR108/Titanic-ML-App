@@ -48,6 +48,21 @@ For windows users, run the following:
 .\run_app.psl
 ```
 
+If the above scripts don't work, we can manually start the backend with:
+```shell
+cd src/backend
+uvicorn api:app --reload
+```
+
+The frontend can be started with:
+```shell
+cd src/frontend
+streamlit run app.py
+```
+
+In case of windows powershell usage replace the above forward slashes with back slashes.
+
+
 ## App preview
 Once the app is launched, the following should be visible
 ![logo](images/App_image.png)
